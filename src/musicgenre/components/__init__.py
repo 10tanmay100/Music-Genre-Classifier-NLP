@@ -1,0 +1,1 @@
+from src.musicgenre.components.data_ingestion import DataIngestion

@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+ipykernel
+nltk
+tqdm
+wordcloud
+scikit-learn
+gdown
+pyyaml

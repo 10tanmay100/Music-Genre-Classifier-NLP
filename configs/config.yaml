@@ -1,0 +1,8 @@
+data_ingestion_config:
+  raw_data_dir: raw_data
+  ingested_dir: ingested_data
+
+
+training_pipeline_config:
+  pipeline_name: music_genre
+  artifact_dir: artifacts
