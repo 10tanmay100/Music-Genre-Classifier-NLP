@@ -104,16 +104,25 @@ The final model is deployed using a Flask app, allowing users to input lyrics an
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/music-genre-classification.git
+   git clone https://github.com/10tanmay100/Music-Genre-Classifier-NLP.git
    ```
 2. **Navigate to the project directory**:
    ```bash
    cd music-genre-classification
    ```
-3. **Install dependencies**:
+
+3. **Navigate to the project directory**:
    ```bash
-   pip install -r requirements.txt
+   bash init_setup.sh
    ```
+4. **Activating the Environment**
+   ``` bash
+    conda activate venv/
+   ```
+5. **Run The main file**
+    ```bash
+    python main.py
+    ```
 
 
 ## Future Work
