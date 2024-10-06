@@ -1,5 +1,5 @@
 # importing our required modules
-from src.musicgenre.entity import DataIngestionConfig, TrainingPipelineConfig
+from src.musicgenre.entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig
 from src.musicgenre.logger import logging
 from src.musicgenre.exception import music_genre_exception
 from src.musicgenre.constants import *
@@ -29,6 +29,27 @@ class Configuration:
             
         except Exception as e:
             raise music_genre_exception(e,sys) from e
+        
+
+    def get_data_validation_config(self):
+        try:
+            data_validation_info=self.config_info[DATA_VALIDATION_CONFIG_KEY]
+            artifact_dir=self.training_pipeline_config.artifact_dir
+
+            data_validation_data_dir=os.path.join(artifact_dir,DATA_VALIDATION_ARTIFACT_DIR_NAME,self.timestamp,DATA_VALIDATION_RAW_DIR_NAME)
+
+            schema_path=os.path.join(data_validation_info["schema_dir"],data_validation_info["schema_file_name"])
+
+            data_validation_config=DataValidationConfig(
+                raw_data_path=data_validation_data_dir,schema_path=schema_path
+            )
+
+            return data_validation_config
+            
+        except Exception as e:
+            raise music_genre_exception(e,sys) from e
+
+
 
     def get_training_pipeline_config(self):
         try:

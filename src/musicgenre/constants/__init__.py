@@ -27,4 +27,7 @@ DATA_INGESTION_INGESTED_DIR_NAME_KEY="ingested_dir"
 DRIVE_LINK="https://drive.google.com/file/d/1FME9CmFwcWFJPUK_syJigJYLiRXpKiAg/view?usp=sharing"
 
 
-
+# Data Validation constant requirements
+DATA_VALIDATION_CONFIG_KEY= "data_validation_config"
+DATA_VALIDATION_ARTIFACT_DIR_NAME="data_validation"
+DATA_VALIDATION_RAW_DIR_NAME="raw_data_dir"

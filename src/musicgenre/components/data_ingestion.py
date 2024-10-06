@@ -5,7 +5,6 @@ from src.musicgenre.constants import *
 from src.musicgenre.logger import logging
 from src.musicgenre.utils import *
 import numpy as np
-import gdown
 import pandas as pd
 
 class DataIngestion:
@@ -20,7 +19,7 @@ class DataIngestion:
         
     def __get_data_from_gdrive(self):
         try:
-            gdown.download(DRIVE_LINK, self.output_path, quiet=False)
+            download_csv_from_gdrive(google_drive_link=DRIVE_LINK,destination=self.output_path)
             logging.info(f"Data downloaded from Google Drive: {self.output_path}")
         except Exception as e:
             raise music_genre_exception(e,sys) from e

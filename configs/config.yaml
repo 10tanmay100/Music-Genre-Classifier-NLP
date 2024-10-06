@@ -6,3 +6,8 @@ data_ingestion_config:
 training_pipeline_config:
   pipeline_name: music_genre
   artifact_dir: artifacts
+
+
+data_validation_config:
+  schema_dir: configs
+  schema_file_name: schema.yaml
