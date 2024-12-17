@@ -11,3 +11,10 @@ training_pipeline_config:
 data_validation_config:
   schema_dir: configs
   schema_file_name: schema.yaml
+
+data_transformation_config:
+  transformed_dir: transformed_data
+  transformed_train_dir: train
+  transformed_test_dir: test
+  preprocessing_dir: preprocessed
+  preprocessed_object_file_name: preprocessed.pkl

@@ -1,5 +1,5 @@
 # importing our required modules
-from src.musicgenre.entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig
+from src.musicgenre.entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig,DataTransformationConfig
 from src.musicgenre.logger import logging
 from src.musicgenre.exception import music_genre_exception
 from src.musicgenre.constants import *
@@ -43,9 +43,59 @@ class Configuration:
             data_validation_config=DataValidationConfig(
                 raw_data_path=data_validation_data_dir,schema_path=schema_path
             )
-
+            logging.info(f"Data validation config: {data_validation_config}")
             return data_validation_config
             
+        except Exception as e:
+            raise music_genre_exception(e,sys) from e
+        
+
+    def get_data_transformation_config(self):
+        try:
+            data_transformation_info=self.config_info[DATA_TRANSFORMATION_CONFIG_KEY]
+            artifact_dir=self.training_pipeline_config.artifact_dir
+            data_transformation_artifact_dir= os.path.join(
+                artifact_dir,
+                DATA_TRANSFORMATION_ARTIFACT_DIR,
+                self.timestamp
+            )
+
+            preprocessed_object_file_path=os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_info[DATA_TRANSFOORMATION_PREPROCESS_DIR_KEY],
+                data_transformation_info[DATA_TRANSFOORMATION_PREPROCESS_FILE_NAME_KEY]
+            )
+
+
+            preprocessed_object_folder_path=os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_info[DATA_TRANSFOORMATION_PREPROCESS_DIR_KEY]
+            )
+
+            transformed_train_dir=os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_info[DATA_TRANSFORMATION_DIR_NAME_KEY],
+                data_transformation_info[DATA_TRANSFORMED_TRAIN_DIR_NAME_KEY]
+            )
+
+            transformed_test_dir=os.path.join(
+                data_transformation_artifact_dir,
+                data_transformation_info[DATA_TRANSFORMATION_DIR_NAME_KEY],
+                data_transformation_info[DATA_TRANSFORMED_TEST_DIR_NAME_KEY]
+            )
+
+            data_transformation_config=DataTransformationConfig(
+                preprocessed_object_file_path=preprocessed_object_file_path,
+                preprocessed_object_folder_path=preprocessed_object_folder_path,
+                transformed_train_dir=transformed_train_dir,
+                transformed_test_dir=transformed_test_dir
+            )
+            logging.info(f"Data Transformation config: {data_transformation_config}")
+
+            return data_transformation_config
+
+
+
         except Exception as e:
             raise music_genre_exception(e,sys) from e
 

@@ -31,3 +31,16 @@ DRIVE_LINK="https://drive.google.com/file/d/1FME9CmFwcWFJPUK_syJigJYLiRXpKiAg/vi
 DATA_VALIDATION_CONFIG_KEY= "data_validation_config"
 DATA_VALIDATION_ARTIFACT_DIR_NAME="data_validation"
 DATA_VALIDATION_RAW_DIR_NAME="raw_data_dir"
+
+# Data Transformation constant requirements
+DATA_TRANSFORMATION_ARTIFACT_DIR="data_transformation"
+DATA_TRANSFORMATION_CONFIG_KEY="data_transformation_config"
+DATA_TRANSFORMATION_DIR_NAME_KEY="transformed_dir"
+DATA_TRANSFORMED_TRAIN_DIR_NAME_KEY="transformed_train_dir"
+DATA_TRANSFORMED_TEST_DIR_NAME_KEY="transformed_test_dir"
+DATA_TRANSFOORMATION_PREPROCESS_DIR_KEY="preprocessing_dir"
+DATA_TRANSFOORMATION_PREPROCESS_FILE_NAME_KEY="preprocessed_object_file_name"
+
+
+
+

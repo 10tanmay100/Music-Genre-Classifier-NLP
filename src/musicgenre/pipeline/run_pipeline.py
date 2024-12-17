@@ -1,9 +1,10 @@
 #importing module
 from src.musicgenre.config.configuration import Configuration
-from src.musicgenre.entity import DataIngestionConfig, TrainingPipelineConfig, DataIngestionArtifact
+from src.musicgenre.entity import *
 from src.musicgenre.logger import logging
 from src.musicgenre.components import DataIngestion
 from src.musicgenre.components import DataValidation
+from src.musicgenre.components import DataTransformation
 from src.musicgenre.exception import music_genre_exception
 from src.musicgenre.constants import *
 from src.musicgenre.utils import *
@@ -28,11 +29,25 @@ class Pipeline:
         except Exception as e:
             raise music_genre_exception(e,sys) from e
         
+    def start_data_transformation(self,data_ingestion_artifact:DataIngestionArtifact, data_validation_artifact:DataValidationArtifact):
+        try:
+            data_transformation=DataTransformation(
+                data_transformation_config=self.config.get_data_transformation_config(),
+                data_ingestion_artifact=data_ingestion_artifact,
+                data_validation_artifact=data_validation_artifact
+            )
+
+            return data_transformation.initiate_data_transformation()
+        except Exception as e:
+            raise music_genre_exception(e,sys) from e
+
+        
 
     def run_pipeline(self):
         try:
-            data_ingestion_process=self.start_data_ingestion()
-            data_validation_process=self.start_data_validation(data_ingestion_artifact=data_ingestion_process)
+            data_ingestion_artifact=self.start_data_ingestion()
+            data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact=self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact,data_validation_artifact=data_validation_artifact)
             return "completed"
         except Exception as e:
             raise music_genre_exception(e,sys) from e

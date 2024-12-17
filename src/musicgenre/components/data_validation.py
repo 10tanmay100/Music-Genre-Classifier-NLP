@@ -50,6 +50,7 @@ class DataValidation:
                 is_validated=status,
                 message="Data Validation Performed"
             )
+            return data_validation_artifact
             logging.info("Data Validation artifact: %s",data_validation_artifact)
         except Exception as e:
             raise music_genre_exception(e,sys) from e
